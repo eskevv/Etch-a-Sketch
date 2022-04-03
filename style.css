@@ -1,23 +1,51 @@
+:root {
+   --primary-dark: #333;
+   --primary-light: #ededed;
+   --secondary-light: #fefefe;
+}
+
 body {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   min-height: 98vh;
-   background-color:rgb(219, 214, 214);
-   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   min-height: 100vh;
+   background-color: rgb(219, 214, 214);
+   font-family: 'JetBrains Mono', 'Arial Narrow', Arial, sans-serif;
    margin: 0;
 }
 
-body div{
+body div {
    display: flex;
    justify-content: center;
-   border: 1px dotted gray;
+}
+
+.heading {
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .main {
+   flex-direction: column;
+   align-items: center;
    margin-bottom: auto;
-   margin-top: 80px;
-   padding: 50px;
+   margin-top: 100px;
+   padding: 30px;
+   min-height: 60vh;
+   gap: 10px;
+}
+
+button {
+   align-items: center;
+   cursor: pointer;
+   background-color: #FCFCFD;
+   border-radius: 4px;
+   border-width: 0;
+   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+   color: #36395A;
+   font-family: "JetBrains Mono", monospace;
+   height: 48px;
+   padding-left: 16px;
+   padding-right: 16px;
+   font-size: 18px;
 }
 
 .sketch {
@@ -25,6 +53,7 @@ body div{
    padding: 5px;
    flex-wrap: wrap;
    background-color: antiquewhite;
+   margin-bottom: auto;
 }
 
 .sketch div {
@@ -34,12 +63,42 @@ body div{
    background-color: aliceblue;
 }
 
+.slider {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 100px;
+}
+
+input[type='range'] {
+   -webkit-appearance: none;
+   background-color: var(--primary-light);
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+   height: 10px;
+   border: 1px solid var(--primary-dark);
+   border-radius: 25px;
+   background: var(--secondary-light);
+}
+
+input[type='range']::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   width: 18px;
+   height: 18px;
+   border-radius: 25px;
+   margin-top: -4px;
+   background: var(--primary-dark);
+}
+
 .sketch #filledOne {
    background-color: rgba(41, 45, 49, 0.233);
 }
+
 .sketch #filledTwo {
    background-color: rgba(41, 45, 49, 0.486);
 }
+
 .sketch #filledThree {
    background-color: rgba(41, 45, 49, 0.89);
 }
