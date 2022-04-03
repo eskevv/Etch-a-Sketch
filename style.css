@@ -1,0 +1,45 @@
+body {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   min-height: 98vh;
+   background-color:rgb(219, 214, 214);
+   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   margin: 0;
+}
+
+body div{
+   display: flex;
+   justify-content: center;
+   border: 1px dotted gray;
+}
+
+.main {
+   margin-bottom: auto;
+   margin-top: 80px;
+   padding: 50px;
+}
+
+.sketch {
+   display: flex;
+   padding: 5px;
+   flex-wrap: wrap;
+   background-color: antiquewhite;
+}
+
+.sketch div {
+   height: 16px;
+   width: 16px;
+   border: 1px solid rgb(52, 55, 58);
+   background-color: aliceblue;
+}
+
+.sketch #filledOne {
+   background-color: rgba(41, 45, 49, 0.233);
+}
+.sketch #filledTwo {
+   background-color: rgba(41, 45, 49, 0.486);
+}
+.sketch #filledThree {
+   background-color: rgba(41, 45, 49, 0.89);
+}
