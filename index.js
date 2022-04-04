@@ -107,18 +107,7 @@ function clearGrid() {
 
 function changeColor() {
    const level = this.getAttribute('id');
-
-   if (useRGB) {
-      const R = Math.floor(Math.random() * 256);
-      const G = Math.floor(Math.random() * 256);
-      const B = Math.floor(Math.random() * 256);
-      this.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
-   } else {
-      if (this.style.backgroundColor !== '') {
-         this.setAttribute('id', 'filledOne');
-      }
-      this.style.backgroundColor = '';
-   }
+   this.style.backgroundColor = '';
 
    switch (level) {
       case 'filledOne':
@@ -151,5 +140,13 @@ function changeColor() {
       default:
          this.setAttribute('id', 'filledOne');
          break;
+   }
+
+   if (useRGB) {
+      this.setAttribute('id', 'erased');
+      const R = Math.floor(Math.random() * 256);
+      const G = Math.floor(Math.random() * 256);
+      const B = Math.floor(Math.random() * 256);
+      this.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
    }
 }
