@@ -22,10 +22,21 @@
          <div class="sketch"></div>
       </div>
       <div class=sliders>
-         <label id="sSize" for="slider"></label>
+         <label id="sSize" for="sizeSlider"></label>
          <input id="sizeSlider" type="range" value="16" min="8" max="32" step="4">
+
          <label id="sBorder" for="borderSlider"></label>
          <input id="borderSlider" type="range" value="1" min="0" max="6" step="1">
+
+         <div class="rgbCheck">
+            <label id="sRGB" for="cRGB">
+               <span>*</span>
+               <span style='color: red'>R</span>
+               <span style='color: rgb(83, 231, 83)'>G</span>
+               <span style='color: rgb(65, 141, 255)'>B</span>
+            </label>
+            <input id="cRGB" type="checkbox">
+         </div>
       </div>
    </div>
    <div class="footer">

@@ -1,10 +1,12 @@
 const grid = document.querySelector('.sketch');
 const clear = document.querySelector('.tools #clear');
+const rgbChecked = document.querySelector('#cRGB');
 
 const size_label = document.querySelector('#sSize');
 const size_slider = document.querySelector('#sizeSlider');
 const border_label = document.querySelector('#sBorder');
 const border_slider = document.querySelector('#borderSlider');
+let useRGB = false;
 let max_width = 578;
 grid.style.width = `${max_width}px`;
 border_label.textContent = 'Borders: ' + border_slider.value + 'px';
@@ -30,6 +32,10 @@ border_slider.addEventListener('input', () => {
    border_label.textContent = 'Borders: ' + border + 'px';
 });
 
+rgbChecked.addEventListener('change', () => {
+   useRGB = !useRGB;
+});
+
 clear.addEventListener('click', clearGrid);
 
 function changeBorder(border) {
@@ -40,7 +46,7 @@ function changeBorder(border) {
    border_label.textContent = 'Borders: ' + border + 'px';
 
    const cells = document.querySelectorAll('.sketch div');
-   
+
    for (let i = 0; i < num_tiles; i++) {
       cells[i].style.width = `${cell_size}px`;
       cells[i].style.height = `${cell_size}px`;
@@ -96,10 +102,23 @@ function createGrid() {
 function clearGrid() {
    const cells = document.querySelectorAll('.sketch div');
    cells.forEach(c => c.setAttribute('id', ''));
+   cells.forEach(c => c.style.backgroundColor = '');
 }
 
 function changeColor() {
    const level = this.getAttribute('id');
+
+   if (useRGB) {
+      const R = Math.floor(Math.random() * 256);
+      const G = Math.floor(Math.random() * 256);
+      const B = Math.floor(Math.random() * 256);
+      this.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
+   } else {
+      if (this.style.backgroundColor !== '') {
+         this.setAttribute('id', 'filledOne');
+      }
+      this.style.backgroundColor = '';
+   }
 
    switch (level) {
       case 'filledOne':

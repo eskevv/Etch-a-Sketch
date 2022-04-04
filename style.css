@@ -67,6 +67,51 @@ button {
    background-color: aliceblue;
 }
 
+.rgbCheck {
+   margin-right: auto;
+   margin-top: 20px;
+}
+
+#sRGB {
+   display: flex;
+   gap: 3px;
+}
+
+ input[type="checkbox"]:checked + label::after {
+   content: '';
+   position: absolute;
+   width: 1.2ex;
+   height: 0.4ex;
+   background: rgba(90, 41, 41, 0.678);
+   top: 0.9ex;
+   left: 0.4ex;
+   border: 3px solid red;
+   border-top: none;
+   border-right: none;
+   -webkit-transform: rotate(-45deg);
+   -moz-transform: rotate(-45deg);
+   -o-transform: rotate(-45deg);
+   -ms-transform: rotate(-45deg);
+   transform: rotate(-45deg);
+}
+
+input[type="checkbox"] {
+   line-height: 2.1ex;
+}
+
+
+input[type="checkbox"] + label {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+ input[type="checkbox"]:checked {
+   border: 3px solid rgb(129, 129, 184);
+   border-top: none;
+   border-right: none;
+}
+
 .sliders {
    display: flex;
    flex-direction: column;
@@ -108,6 +153,7 @@ input[type='range']::-webkit-slider-thumb {
 .sketch #filledThree {
    background-color: rgba(41, 45, 49, 0.3);
 }
+
 .sketch #filledFour {
    background-color: rgba(41, 45, 49, 0.4);
 }
@@ -119,6 +165,7 @@ input[type='range']::-webkit-slider-thumb {
 .sketch #filledSix {
    background-color: rgba(41, 45, 49, 0.6);
 }
+
 .sketch #filledSeven {
    background-color: rgba(41, 45, 49, 0.7);
 }
