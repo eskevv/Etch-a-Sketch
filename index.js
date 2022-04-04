@@ -1,48 +1,93 @@
 const grid = document.querySelector('.sketch');
-const clear = document.querySelector('.tools #clear')
-const size_label = document.querySelector('.slider label')
-const size_slider = document.querySelector('#sizeSlider')
+const clear = document.querySelector('.tools #clear');
 
-const cell_borderSize = 2;
-const border_style = `${cell_borderSize}px solid rgb(52, 55, 58)`;
+const size_label = document.querySelector('#sSize');
+const size_slider = document.querySelector('#sizeSlider');
+const border_label = document.querySelector('#sBorder');
+const border_slider = document.querySelector('#borderSlider');
+let max_width = 578;
+grid.style.width = `${max_width}px`;
+border_label.textContent = 'Borders: ' + border_slider.value + 'px';
 
 createGrid();
 
 size_slider.addEventListener('change', () => {
-   createGrid();
-})
+   createGrid(1);
+});
 
 size_slider.addEventListener('input', () => {
    let grid_size = size_slider.value;
-   size_label.textContent = grid_size + 'x' + grid_size;
-})
+   size_label.textContent = 'Grid: ' + grid_size + 'x' + grid_size;
+});
+
+border_slider.addEventListener('change', () => {
+   let border = border_slider.value;
+   changeBorder(border);
+});
+
+border_slider.addEventListener('input', () => {
+   let border = border_slider.value;
+   border_label.textContent = 'Borders: ' + border + 'px';
+});
 
 clear.addEventListener('click', clearGrid);
 
-function createGrid() {
-   let grid_size = size_slider.value;
-   let max_width = (16 + cell_borderSize) * grid_size + cell_borderSize;
-   let num_tiles = grid_size * grid_size;
+function changeBorder(border) {
+   const grid_size = size_slider.value;
+   const outer_border = `${border * 2}px solid rgb(52, 55, 58)`;
+   const num_tiles = grid_size * grid_size;
+   const cell_size = ((max_width - border * 2) / grid_size) - (border * 2);
+   border_label.textContent = 'Borders: ' + border + 'px';
 
-   size_label.textContent = grid_size + 'x' + grid_size;
-   grid.style.width = `${max_width}px`;
+   const cells = document.querySelectorAll('.sketch div');
+   
+   for (let i = 0; i < num_tiles; i++) {
+      cells[i].style.width = `${cell_size}px`;
+      cells[i].style.height = `${cell_size}px`;
+      cells[i].style.border = `${border}px solid rgb(52, 55, 58)`
+      if (i >= num_tiles - grid_size) {
+         cells[i].style.borderBottom = outer_border;
+      }
+      if (i >= 0 && i < grid_size) {
+         cells[i].style.borderTop = outer_border;
+      }
+      if (i % grid_size === 0) {
+         cells[i].style.borderLeft = outer_border;
+      }
+      if (i % grid_size === grid_size - 1) {
+         cells[i].style.borderRight = outer_border;
+      }
+   }
+}
+
+function createGrid() {
+   const cell_borderSize = border_slider.value;
+   const grid_size = size_slider.value;
+   const outer_border = `${cell_borderSize * 2}px solid rgb(52, 55, 58)`;
+   const num_tiles = grid_size * grid_size;
+   const cell_size = ((max_width - cell_borderSize * 2) / grid_size) - (cell_borderSize * 2);
+   size_label.textContent = 'Grid: ' + grid_size + 'x' + grid_size;
+
    while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
    }
    for (let i = 0; i < num_tiles; i++) {
       const square = document.createElement('div');
+      square.style.width = `${cell_size}px`;
+      square.style.height = `${cell_size}px`;
+      square.style.border = `${cell_borderSize}px solid rgb(52, 55, 58)`
       square.addEventListener('mouseover', changeColor);
       if (i >= num_tiles - grid_size) {
-         square.style.borderBottom = border_style;
+         square.style.borderBottom = outer_border;
       }
       if (i >= 0 && i < grid_size) {
-         square.style.borderTop = border_style;
+         square.style.borderTop = outer_border;
       }
       if (i % grid_size === 0) {
-         square.style.borderLeft = border_style;
+         square.style.borderLeft = outer_border;
       }
       if (i % grid_size === grid_size - 1) {
-         square.style.borderRight = border_style;
+         square.style.borderRight = outer_border;
       }
       grid.appendChild(square);
    }
@@ -64,7 +109,25 @@ function changeColor() {
          this.setAttribute('id', 'filledThree');
          break;
       case 'filledThree':
-         this.setAttribute('id', 'filledThree');
+         this.setAttribute('id', 'filledFour');
+         break;
+      case 'filledFour':
+         this.setAttribute('id', 'filledFive');
+         break;
+      case 'filledFive':
+         this.setAttribute('id', 'filledSix');
+         break;
+      case 'filledSix':
+         this.setAttribute('id', 'filledSeven');
+         break;
+      case 'filledSeven':
+         this.setAttribute('id', 'filledEight');
+         break;
+      case 'filledEight':
+         this.setAttribute('id', 'filledNine');
+         break;
+      case 'filledNine':
+         this.setAttribute('id', 'filledNine');
          break;
       default:
          this.setAttribute('id', 'filledOne');
